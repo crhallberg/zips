@@ -1,0 +1,28 @@
+{
+  "name": "zips",
+  "version": "1.0.0",
+  "description": "Light, fast, tree-based way to get cities by zipcode and location.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/crhallberg/zips.git"
+  },
+  "keywords": [
+    "zipcodes",
+    "zip",
+    "code",
+    "geo",
+    "zipcode",
+    "postal",
+    "code"
+  ],
+  "author": "Chris Hallberg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/crhallberg/zips/issues"
+  },
+  "homepage": "https://github.com/crhallberg/zips#readme"
+}
