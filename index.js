@@ -4,6 +4,15 @@ function getPath(zip) {
 
 let zipTree = null;
 function getByZipCode(zip) {
+  // Validate
+  // - Convert to string
+  if (typeof zip !== 'string')  zip = '' + Number(zip); // fixes octals
+  // - Check zip length
+  if (zip.length < 5) zip = '00000'.substr(zip.length) + zip;
+  else if (zip.length > 5) return null;
+  // - Reject non-numeric
+  if (zip.match(/\D/)) return null;
+  // Load data if not loaded
   if (zipTree === null) {
     zipTree = require('./zip-tree.json');
   }

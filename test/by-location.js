@@ -22,7 +22,7 @@ describe('Valid locations', function() {
     for (let i = 1; i <= 3; i++) {
       const lat  = Math.random() * 5  + 35;
       const long = Math.random() * 40 - 120;
-      it ('random US location ' + i + '(' + lat + ', ' + long + ')', function() {
+      it ('random US location ' + i + ' (' + lat + ', ' + long + ')', function() {
         assert.ok(zips.getByLocation(lat, long));
       });
     }
@@ -32,7 +32,7 @@ describe('Invalid locations', function() {
   it('only one parameter', function() {
     assert.equal(null, zips.getByLocation(38));
   });
-  it('outside the US should be null', function() {
+  it('outside the US should be null (unimplemented)', function() {
     assert.equal(null, zips.getByLocation(34));
   });
 });

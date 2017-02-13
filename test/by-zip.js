@@ -10,9 +10,14 @@ describe('Valid zipcodes', function() {
   });
   it('should fix dropped zeros', function() {
     let place = zips.getByZipCode(08848); // Milford, NJ
+    assert.ok(place);
     assert.equal('08848', place.zip);
+  });
+  it('should handle accidentally octal numbers', function() {
+    // 00501 is evaluated as an octal number equal to 321
     let place2 = zips.getByZipCode(00501); // Holtsville, NY
-    assert.equal('01234', place2.zip);
+    assert.ok(place2);
+    assert.equal('00501', place2.zip);
   });
 });
 
