@@ -19,7 +19,7 @@ describe('Valid locations', function() {
   describe('always return a city when the location is in the US', function() {
     // Safe band: 35 to 40 lat, -120 to -80 long
     // http://www.okatlas.org/okatlas/location/usa/lat-long.gif
-    for (let i = 1; i <= 3; i++) {
+    for (let i = 1; i <= 10; i++) {
       const lat  = Math.random() * 5  + 35;
       const long = Math.random() * 40 - 120;
       it ('random US location ' + i + ' (' + lat + ', ' + long + ')', function() {

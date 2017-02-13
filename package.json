@@ -25,7 +25,7 @@
     "url": "https://github.com/crhallberg/zips/issues"
   },
   "homepage": "https://github.com/crhallberg/zips#readme",
-  "devDependencies": {
+  "dev-dependencies": {
     "mocha": "^3.2.0"
   }
 }
