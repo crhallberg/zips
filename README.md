@@ -1,4 +1,4 @@
-# zips
+# zips ![Travis status](https://travis-ci.org/crhallberg/zips.svg?branch=master)
 Light, fast, tree-based way to get cities by zipcode and location.
 
 ```bash
