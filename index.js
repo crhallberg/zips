@@ -6,7 +6,7 @@ let zipTree = null;
 function getByZipCode(zip) {
   // Validate
   // - Convert to string
-  if (typeof zip !== 'string')  zip = '' + Number(zip); // fixes octals
+  if (typeof zip !== 'string')  zip += '';
   // - Check zip length
   if (zip.length < 5) zip = '00000'.substr(zip.length) + zip;
   else if (zip.length > 5) return null;
@@ -26,7 +26,9 @@ let locTree = null;
 function distance(lat, long, op) {
   return Math.pow(lat - op.lat, 2) + Math.pow(long - op.long, 2);
 }
-function getByLocation(lat, long) {
+function getByLocation(lat, long, count) {
+  // Validate
+  if (typeof long === 'undefined') return null;
   if (locTree === null) {
     locTree = require('./loc-tree.json');
   }
@@ -43,16 +45,27 @@ function getByLocation(lat, long) {
     }
     curr = curr[p[i]];
   }
-  let d = distance(lat, long, locTree.index[curr[0]]);
-  let index = 0;
-  for (let i = 1; i < curr.length; i++) {
-    let nd = distance(lat, long, locTree.index[curr[i]]);
-    if (nd < d) {
-      d = nd;
-      index = i;
+  // Return 1
+  if (!count || count === 1) {
+    let d = distance(lat, long, locTree.index[curr[0]]);
+    let index = 0;
+    for (let i = 1; i < curr.length; i++) {
+      let nd = distance(lat, long, locTree.index[curr[i]]);
+      if (nd < d) {
+        d = nd;
+        index = i;
+      }
     }
+    return locTree.index[curr[index]];
+  } else {
+    // Return multiple
+    curr = curr.map((op) => {
+      let place = locTree.index[op];
+      place.distance = distance(lat, long, place);
+      return place;
+    });
+    return curr.sort((a, b) => a.distance - b.distance).slice(0, count);
   }
-  return locTree.index[curr[index]];
 }
 
 module.exports = {

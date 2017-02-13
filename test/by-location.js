@@ -14,7 +14,7 @@ describe('Valid locations', function() {
   });
   it('return multiple closest when asked', function() {
     let count = 3;
-    assert.equal(count, zips.getByLocation(38, -90, count));
+    assert.equal(count, zips.getByLocation(38, -90, count).length);
   });
   describe('always return a city when the location is in the US', function() {
     // Safe band: 35 to 40 lat, -120 to -80 long
