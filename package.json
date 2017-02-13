@@ -1,6 +1,6 @@
 {
   "name": "zips",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Light, fast, tree-based way to get cities by zipcode and location.",
   "main": "index.js",
   "scripts": {
