@@ -3,10 +3,10 @@ function getPath(zip) {
 }
 
 let zipTree = null;
-function getByZipCode(zip) {
+function getByZipCode(_zip) {
+  // Cast to string
+  let zip = String(_zip);
   // Validate
-  // - Convert to string
-  if (typeof zip !== 'string')  zip += '';
   // - Check zip length
   if (zip.length < 5) zip = '00000'.substr(zip.length) + zip;
   else if (zip.length > 5) return null;
@@ -17,9 +17,14 @@ function getByZipCode(zip) {
     zipTree = require('./zip-tree.json');
   }
   const p = getPath(zip + '');
-  return zipTree[p[0]] && zipTree[p[0]][p[1]] && zipTree[p[0]][p[1]][p[2]] && zipTree[p[0]][p[1]][p[2]][p[3]] && zipTree[p[0]][p[1]][p[2]][p[3]][p[4]]
+  const place = zipTree[p[0]] && zipTree[p[0]][p[1]] && zipTree[p[0]][p[1]][p[2]] && zipTree[p[0]][p[1]][p[2]][p[3]] && zipTree[p[0]][p[1]][p[2]][p[3]][p[4]]
     ? zipTree[p[0]][p[1]][p[2]][p[3]][p[4]]
     : null;
+  // Octal check
+  if (place === null && typeof _zip !== 'string' && _zip < 07777) {
+    return getByZipCode(_zip.toString(8));
+  }
+  return place;
 }
 
 let locTree = null;
