@@ -22,8 +22,8 @@ describe('Valid locations', function() {
     // Safe band: 35 to 40 lat, -120 to -80 long
     // http://www.okatlas.org/okatlas/location/usa/lat-long.gif
     for (let i = 1; i <= randomLocCount; i++) {
-      const lat  = Math.random() * 5  + 35;
-      const long = Math.random() * 40 - 120;
+      const lat  = Math.random() *  5 +  35; //   35 to  40
+      const long = Math.random() * 40 - 120; // -120 to -80
       assert.ok(zips.getByLocation(lat, long), 'no zipcodes near ' + lat + ', ' + long);
     }
   });
@@ -32,7 +32,8 @@ describe('Invalid locations', function() {
   it('only one parameter', function() {
     assert.equal(null, zips.getByLocation(38));
   });
-  it.skip('outside the US should be null (unimplemented)', function() {
-    assert.equal(null, zips.getByLocation(99, 0));
+  it('outside the US should be null (unimplemented)', function() {
+    // Way off the east coast of Florida
+    assert.equal(null, zips.getByLocation(30, -70));
   });
 });
