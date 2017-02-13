@@ -37,39 +37,31 @@ function getByLocation(lat, long, count) {
   if (locTree === null) {
     locTree = require('./loc-tree.json');
   }
-  let latPath  = Math.floor(Math.abs(lat)  * 10);
-  let longPath = Math.floor(Math.abs(long) * 10);
-  if (longPath < 1000) {
-    longPath = '0' + longPath;
+  const latIndex  = Math.round(Math.abs(lat));
+  const longIndex = Math.round(Math.abs(long));
+  if (!locTree[latIndex] || !locTree[latIndex][longIndex]) {
+    return null;
   }
-  const p = getPath(latPath + '' + longPath);
-  let curr = locTree.points;
-  for (let i = 0; i < p.length; i++) {
-    if (!curr[p[i]]) {
-      return null;
-    }
-    curr = curr[p[i]];
-  }
+  const zone = locTree[latIndex][longIndex];
   // Return 1
   if (!count || count === 1) {
-    let d = distance(lat, long, locTree.index[curr[0]]);
+    let d = distance(lat, long, zone[0]);
     let index = 0;
-    for (let i = 1; i < curr.length; i++) {
-      let nd = distance(lat, long, locTree.index[curr[i]]);
+    for (let i = 1; i < zone.length; i++) {
+      let nd = distance(lat, long, zone[i]);
       if (nd < d) {
         d = nd;
         index = i;
       }
     }
-    return locTree.index[curr[index]];
+    return zone[index];
   } else {
     // Return multiple
-    curr = curr.map((op) => {
-      let place = locTree.index[op];
+    const sortzone = zone.map((place) => {
       place.distance = distance(lat, long, place);
       return place;
     });
-    return curr.sort((a, b) => a.distance - b.distance).slice(0, count);
+    return sortzone.sort((a, b) => a.distance - b.distance).slice(0, count);
   }
 }
 
