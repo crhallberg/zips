@@ -14,8 +14,8 @@ describe('Valid locations', function() {
   });
   it('return multiple closest when asked', function() {
     let count = 3;
-    assert.equal(count, zips.getByLocation(41.5, -75.5, count).length);
-    // 41 -75 is the most populated quadrant
+    assert.equal(count, zips.getByLocation(41.5, -74.5, count).length);
+    // 41 -74 is the most populated quadrant
   });
   const randomLocCount = 1000;
   it('always return a city when the location is in the US (checking ' + randomLocCount + ' random points)', function() {
