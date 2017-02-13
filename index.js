@@ -14,7 +14,7 @@ function getByZipCode(_zip) {
   if (zip.match(/\D/)) return null;
   // Load data if not loaded
   if (zipTree === null) {
-    zipTree = require('./zip-tree.json');
+    zipTree = require('./data/zip-tree.json');
   }
   const p = getPath(zip + '');
   const place = zipTree[p[0]] && zipTree[p[0]][p[1]] && zipTree[p[0]][p[1]][p[2]] && zipTree[p[0]][p[1]][p[2]][p[3]] && zipTree[p[0]][p[1]][p[2]][p[3]][p[4]]
@@ -35,7 +35,7 @@ function getByLocation(lat, long, count) {
   // Validate
   if (typeof long === 'undefined') return null;
   if (locTree === null) {
-    locTree = require('./loc-tree.json');
+    locTree = require('./data/loc-tree.json');
   }
   const latIndex  = Math.round(Math.abs(lat));
   const longIndex = Math.round(Math.abs(long));
