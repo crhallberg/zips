@@ -21,7 +21,7 @@ Returns the closest place object to the specified coordinates.
 
 ### Under the hood
 
-In version 1.0.0, **zips** doesn't load its data until the first time a function is called. The longest loading time I've seen is 100ms. After that, sub-millisecond returns can be expected.
+**zips** doesn't load its data until the first time a function is called. The longest loading time I've seen is 100ms. After that, sub-millisecond returns can be expected.
 
 ### Why?
 
