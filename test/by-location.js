@@ -16,15 +16,14 @@ describe('Valid locations', function() {
     let count = 3;
     assert.equal(count, zips.getByLocation(38, -90, count).length);
   });
-  describe('always return a city when the location is in the US', function() {
+  const randomLocCount = 1000;
+  it('always return a city when the location is in the US (checking ' + randomLocCount + ' random points)', function() {
     // Safe band: 35 to 40 lat, -120 to -80 long
     // http://www.okatlas.org/okatlas/location/usa/lat-long.gif
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= randomLocCount; i++) {
       const lat  = Math.random() * 5  + 35;
       const long = Math.random() * 40 - 120;
-      it ('random US location ' + i + ' (' + lat + ', ' + long + ')', function() {
-        assert.ok(zips.getByLocation(lat, long));
-      });
+      assert.ok(zips.getByLocation(lat, long), 'no zipcodes near ' + lat + ', ' + long);
     }
   });
 });

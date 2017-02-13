@@ -39,25 +39,26 @@ function getByLocation(lat, long, count) {
   }
   const latIndex  = Math.round(Math.abs(lat));
   const longIndex = Math.round(Math.abs(long));
-  if (!locTree[latIndex] || !locTree[latIndex][longIndex]) {
+  if (!locTree.zones[latIndex] || !locTree.zones[latIndex][longIndex]) {
     return null;
   }
-  const zone = locTree[latIndex][longIndex];
+  const zone = locTree.zones[latIndex][longIndex];
   // Return 1
   if (!count || count === 1) {
-    let d = distance(lat, long, zone[0]);
+    let d = distance(lat, long, locTree.index[zone[0]]);
     let index = 0;
     for (let i = 1; i < zone.length; i++) {
-      let nd = distance(lat, long, zone[i]);
+      let nd = distance(lat, long, locTree.index[zone[i]]);
       if (nd < d) {
         d = nd;
         index = i;
       }
     }
-    return zone[index];
+    return locTree.index[zone[index]];
   } else {
     // Return multiple
-    const sortzone = zone.map((place) => {
+    const sortzone = zone.map((index) => {
+      let place = locTree.index[index];
       place.distance = distance(lat, long, place);
       return place;
     });
