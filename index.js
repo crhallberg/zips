@@ -17,7 +17,7 @@ function getByZipCode(_zip) {
   if (zipTree === null) {
     zipTree = require('./data/zip-tree.json');
   }
-  const p = zip.split('').map(x => parseInt(x, 10));
+  const p = zip.split('').map((x) => parseInt(x, 10));
   const place = zipTree[p[0]] && zipTree[p[0]][p[1]] && zipTree[p[0]][p[1]][p[2]]
     && zipTree[p[0]][p[1]][p[2]][p[3]] && zipTree[p[0]][p[1]][p[2]][p[3]][p[4]]
     ? zipTree[p[0]][p[1]][p[2]][p[3]][p[4]]
