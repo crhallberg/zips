@@ -31,7 +31,7 @@ function getByZipCode(_zip) {
 
 let locTree = null;
 function distance(lat, long, op) {
-  return Math.sqrt(((lat - op.lat) ** 2) + ((long - op.long) ** 2));
+  return Math.sqrt(Math.pow(lat - op.lat, 2) + Math.pow(long - op.long, 2));
 }
 function getByLocation(lat, long, count) {
   // Validate
