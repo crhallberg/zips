@@ -5,7 +5,7 @@ function getByZipCode(_zip) {
   // Validate
   // - Check zip length
   if (zip.length < 5) {
-    zip = '00000'.substr(zip.length) + zip;
+    zip = "00000".substr(zip.length) + zip;
   } else if (zip.length > 5) {
     return null;
   }
@@ -15,15 +15,19 @@ function getByZipCode(_zip) {
   }
   // Load data if not loaded
   if (zipTree === null) {
-    zipTree = require('./data/zip-tree.json');
+    zipTree = require("./data/zip-tree.json");
   }
-  const p = zip.split('').map((x) => parseInt(x, 10));
-  const place = zipTree[p[0]] && zipTree[p[0]][p[1]] && zipTree[p[0]][p[1]][p[2]]
-    && zipTree[p[0]][p[1]][p[2]][p[3]] && zipTree[p[0]][p[1]][p[2]][p[3]][p[4]]
-    ? zipTree[p[0]][p[1]][p[2]][p[3]][p[4]]
-    : null;
+  const p = zip.split("").map(x => parseInt(x, 10));
+  const place =
+    zipTree[p[0]] &&
+    zipTree[p[0]][p[1]] &&
+    zipTree[p[0]][p[1]][p[2]] &&
+    zipTree[p[0]][p[1]][p[2]][p[3]] &&
+    zipTree[p[0]][p[1]][p[2]][p[3]][p[4]]
+      ? zipTree[p[0]][p[1]][p[2]][p[3]][p[4]]
+      : null;
   // Octal check
-  if (place === null && typeof _zip !== 'string' && _zip < 0o7777) {
+  if (place === null && typeof _zip !== "string" && _zip < 0o7777) {
     return getByZipCode(_zip.toString(8));
   }
   return place;
@@ -36,13 +40,15 @@ function distance(lat, long, op) {
 function getByLocation(lat, long, count) {
   // Validate
   if (
-    typeof lat === 'undefined' || isNaN(parseInt(lat, 10))
-    || typeof long === 'undefined' || isNaN(parseInt(long, 10))
+    typeof lat === "undefined" ||
+    isNaN(parseInt(lat, 10)) ||
+    typeof long === "undefined" ||
+    isNaN(parseInt(long, 10))
   ) {
     return null;
   }
   if (locTree === null) {
-    locTree = require('./data/loc-tree.json');
+    locTree = require("./data/loc-tree.json");
   }
   const latIndex = Math.round(Math.abs(parseFloat(lat, 10)));
   const longIndex = Math.round(Math.abs(parseFloat(long, 10)));
@@ -63,8 +69,8 @@ function getByLocation(lat, long, count) {
     }
     return locTree.index[zone[index]];
   }
-    // Return multiple
-  const sortzone = zone.map((index) => {
+  // Return multiple
+  const sortzone = zone.map(index => {
     const place = locTree.index[index];
     place.distance = distance(lat, long, place);
     return place;
@@ -74,5 +80,5 @@ function getByLocation(lat, long, count) {
 
 module.exports = {
   getByLocation,
-  getByZipCode,
+  getByZipCode
 };
