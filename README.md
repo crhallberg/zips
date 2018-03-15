@@ -1,4 +1,4 @@
-# zips [![Travis status](https://travis-ci.org/crhallberg/zips.svg?branch=master)](https://travis-ci.org/crhallberg/zips) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/405b20a50b0d4918ac7ee50f3ab1d9cb)](https://www.codacy.com/app/crhallberg/zips?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=crhallberg/zips&amp;utm_campaign=Badge_Grade)
+# zips [![Travis status](https://travis-ci.org/crhallberg/zips.svg?branch=master)](https://travis-ci.org/crhallberg/zips)
 Light, fast, tree-based way to get cities by zipcode and location.
 
 ```bash
