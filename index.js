@@ -19,7 +19,11 @@ function getByZipCode(_zip) {
     }
     const p = zip.split("").map(x => parseInt(x, 10));
     const place =
-        zipTree[p[0]] && zipTree[p[0]][p[1]] && zipTree[p[0]][p[1]][p[2]] && zipTree[p[0]][p[1]][p[2]][p[3]] && zipTree[p[0]][p[1]][p[2]][p[3]][p[4]]
+        zipTree[p[0]] &&
+        zipTree[p[0]][p[1]] &&
+        zipTree[p[0]][p[1]][p[2]] &&
+        zipTree[p[0]][p[1]][p[2]][p[3]] &&
+        zipTree[p[0]][p[1]][p[2]][p[3]][p[4]]
             ? zipTree[p[0]][p[1]][p[2]][p[3]][p[4]]
             : null;
     // Octal check
@@ -35,7 +39,12 @@ function distance(lat, long, op) {
 }
 function getByLocation(lat, long, count) {
     // Validate
-    if (typeof lat === "undefined" || isNaN(parseInt(lat, 10)) || typeof long === "undefined" || isNaN(parseInt(long, 10))) {
+    if (
+        typeof lat === "undefined" ||
+        isNaN(parseInt(lat, 10)) ||
+        typeof long === "undefined" ||
+        isNaN(parseInt(long, 10))
+    ) {
         return null;
     }
     if (locTree === null) {
