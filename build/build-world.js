@@ -23,5 +23,5 @@ lineReader.on("line", function(line) {
 });
 
 lineReader.on("close", function() {
-    require("fs").writeFileSync("../data/world-tree.json", quad.toJSON(), null, 4);
+    require("fs").writeFileSync("../data/world-tree.json", JSON.stringify(quad.toJSON()));
 });
