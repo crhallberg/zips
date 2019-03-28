@@ -46,3 +46,4 @@ build/skip-benchmark.js
 build/tree-limit-benchmark.js
 build/data/simplemaps/worldcities.csv
 build/data/simplemaps/worldcities.xlsx
+data/world-tree.json
