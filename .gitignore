@@ -38,3 +38,11 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+package-lock.json
+build/index.html
+build/sketch.js
+build/save-load-benchmark.js
+build/skip-benchmark.js
+build/tree-limit-benchmark.js
+build/data/simplemaps/worldcities.csv
+build/data/simplemaps/worldcities.xlsx
