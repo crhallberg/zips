@@ -1,14 +1,24 @@
 {
   "name": "zips",
-  "version": "1.1.2",
+  "version": "1.1.2.2023-02-03",
   "description": "Light, fast, tree-based way to get cities by zipcode and location.",
-  "main": "index.js",
-  "scripts": {
-    "test": "mocha"
+  "author": "Chris Hallberg",
+  "homepage": "https://github.com/crhallberg/zips#readme",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/crhallberg/zips/issues"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/crhallberg/zips.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "update": "node ./update.js",
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "mocha": "^3.5.3"
   },
   "keywords": [
     "zipcodes",
@@ -18,14 +28,5 @@
     "zipcode",
     "postal",
     "code"
-  ],
-  "author": "Chris Hallberg",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/crhallberg/zips/issues"
-  },
-  "homepage": "https://github.com/crhallberg/zips#readme",
-  "dev-dependencies": {
-    "mocha": "^3.2.0"
-  }
+  ]
 }
